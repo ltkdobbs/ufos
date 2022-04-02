@@ -57,40 +57,22 @@ function updateFilters() {
   
   // 7. Use this function to filter the table when data is entered.
   function filterTable() {
-    console.log("start filterTable")
-    console.log(filters)
+
     // 8. Set the filtered data to the tableData.
     filteredData = tableData;
-    
-    // let date = Object.entries(filters)[0][1]
-    // let city = Object.entries(filters)[1][1]
-    // let state = Object.entries(filters)[2][1]
-    // let country = Object.entries(filters)[3][1]
-    // let shape = Object.entries(filters)[4][1]
-
-    // console.log(date)
-    // console.log(city)
-    // console.log(state)
-    // console.log(country)
-    // console.log(shape)
 
     // 9. Loop through all of the filters and keep any data that
     // matches the filter values
+    for (let id in filters){
+      if (id == 'datetime') {filteredData = filteredData.filter(row => row.datetime === filters[id]);}
+      else if (id == 'city') {filteredData = filteredData.filter(row => row.city === filters[id]);}
+      else if (id == 'state') {filteredData = filteredData.filter(row => row.state === filters[id]);}
+      else if (id == 'country') {filteredData = filteredData.filter(row => row.country === filters[id]);}
+      else if (id == 'shape') {filteredData = filteredData.filter(row => row.shape === filters[id]);}
+    }
 
-    // filteredData.forEach((dataRow) => {
-    //   Object.values(dataRow).forEach((val) => {
-    //     filteredData = filteredData.filter(row => row.datetime === filterElement);
-    //     filteredData = filteredData.filter(row => row.city === filterElement);
-    //     filteredData = filteredData.filter(row => row.state === filterElement);
-    //     filteredData = filteredData.filter(row => row.country === filterElement);
-    //     filteredData = filteredData.filter(row => row.shape === filterElement);
-    //   });
-      
-  
-    // });
-  
     // 10. Finally, rebuild the table using the filtered data
-    // buildTable(filteredData);
+    buildTable(filteredData);
   };
   
   // 2. Attach an event to listen for changes to each filter
